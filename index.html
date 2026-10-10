@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kingly — A private, on-device wealth journal for self-directed investors. Track net worth, portfolios, budgets and transactions beautifully on your iPhone." />
+  <meta name="theme-color" content="#0A0E1A" />
+  <title>Kingly — Private Wealth, Plainly Seen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0A0E1A;
+      --bg-secondary: #121829;
+      --bg-tertiary: #1A2238;
+      --text-primary: #F5F7FA;
+      --text-secondary: #9CA3AF;
+      --brand-gold: #F4C342;
+      --brand-gain: #4ADE80;
+      --brand-loss: #F87171;
+      --brand-navy: #60A5FA;
+      --brand-coral: #FB923C;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      display: grid; place-items: center;
+      color: #0A0E1A; font-weight: 800; font-size: 16px;
+      box-shadow: 0 4px 12px rgba(244,195,66,0.25);
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero {
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(244,195,66,0.15) 0%, transparent 70%);
+      filter: blur(40px); pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px;
+      align-items: center; position: relative;
+    }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(74, 222, 128, 0.08);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--brand-gain); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+    .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand-gain); }
+    h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1; letter-spacing: -1.2px; font-weight: 800;
+      margin: 20px 0 24px;
+    }
+    h1 .gold {
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p.lead {
+      font-size: 18px; color: var(--text-secondary); max-width: 520px;
+    }
+    .cta-row { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 22px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 15px; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      color: #0A0E1A; box-shadow: 0 8px 24px rgba(244,195,66,0.25);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-primary);
+    }
+
+    /* Phone mockup */
+    .phone-wrap { position: relative; display: flex; justify-content: center; }
+    .phone {
+      width: 300px; height: 600px; border-radius: 44px;
+      background: linear-gradient(180deg, #1A2238 0%, #121829 100%);
+      border: 8px solid #000;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.08);
+      padding: 20px; position: relative;
+    }
+    .phone-notch {
+      position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+      width: 110px; height: 28px; background: #000; border-radius: 14px;
+    }
+    .screen { display: flex; flex-direction: column; gap: 12px; height: 100%; padding-top: 24px; }
+    .screen-header { display: flex; justify-content: space-between; align-items: center; padding: 4px 6px; }
+    .screen-header .title { font-weight: 700; font-size: 14px; }
+    .screen-header .icon { width: 24px; height: 24px; border-radius: 6px; background: rgba(244,195,66,0.2); display: grid; place-items: center; font-size: 10px; color: var(--brand-gold); }
+    .nw-card { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 14px; border: 1px solid rgba(255,255,255,0.06); }
+    .nw-label { font-size: 9px; letter-spacing: 1px; color: var(--text-secondary); font-weight: 600; }
+    .nw-value { font-size: 22px; font-weight: 800; margin-top: 4px; }
+    .nw-delta { font-size: 10px; color: var(--brand-loss); margin-top: 2px; }
+    .chart {
+      height: 70px; margin-top: 10px; border-radius: 8px;
+      background: linear-gradient(180deg, rgba(244,195,66,0.18) 0%, transparent 100%);
+      position: relative; overflow: hidden;
+    }
+    .chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .seg-row { display: flex; gap: 4px; }
+    .seg {
+      flex: 1; padding: 6px 0; text-align: center; border-radius: 8px;
+      font-size: 9px; font-weight: 600; color: var(--text-secondary);
+      background: rgba(255,255,255,0.04);
+    }
+    .seg.active { background: var(--brand-gold); color: #0A0E1A; }
+    .ring-row { display: flex; align-items: center; gap: 12px; }
+    .donut {
+      width: 80px; height: 80px; position: relative; flex-shrink: 0;
+    }
+    .donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .donut-center {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      font-size: 11px; font-weight: 800; color: var(--text-primary);
+    }
+    .ring-text .h { font-size: 12px; font-weight: 700; }
+    .ring-text .s { font-size: 10px; color: var(--text-secondary); }
+    .leg-row { display: flex; align-items: center; gap: 8px; font-size: 10px; padding: 2px 0; }
+    .leg-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-title { text-align: center; max-width: 700px; margin: 0 auto 56px; }
+    .eyebrow { color: var(--brand-gold); font-weight: 600; letter-spacing: 1.4px; font-size: 12px; text-transform: uppercase; }
+    h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.8px; margin: 12px 0 16px; }
+    .section-title p { color: var(--text-secondary); font-size: 16px; }
+
+    /* Features */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .feature:hover { transform: translateY(-4px); border-color: rgba(244,195,66,0.3); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: grid; place-items: center; font-size: 22px;
+      background: rgba(244,195,66,0.12); color: var(--brand-gold);
+      margin-bottom: 16px;
+    }
+    .feature h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feature p { color: var(--text-secondary); font-size: 14px; }
+
+    /* Privacy */
+    .privacy-band {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 800px) { .privacy-grid { grid-template-columns: 1fr; } }
+    .privacy-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .privacy-list li { display: flex; gap: 12px; align-items: flex-start; }
+    .privacy-list .check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(74,222,128,0.15); color: var(--brand-gain);
+      display: grid; place-items: center; font-size: 12px; font-weight: 800;
+    }
+    .shield-card {
+      background: var(--bg-tertiary); border-radius: var(--radius-lg);
+      padding: 32px; border: 1px solid rgba(74,222,128,0.2);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .shield-icon {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(74,222,128,0.2), rgba(74,222,128,0.05));
+      display: grid; place-items: center; margin: 0 auto 16px;
+      color: var(--brand-gain); font-size: 42px;
+      border: 1px solid rgba(74,222,128,0.3);
+    }
+    .shield-card h3 { font-size: 22px; margin-bottom: 8px; }
+    .shield-card p { color: var(--text-secondary); font-size: 14px; }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; }
+    details {
+      background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    details[open] { border-color: rgba(244,195,66,0.3); }
+    summary { cursor: pointer; font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--brand-gold); font-size: 24px; font-weight: 300; transition: transform 0.2s; }
+    details[open] summary::after { content: "−"; }
+    details p { color: var(--text-secondary); margin-top: 12px; font-size: 14px; }
+
+    /* Footer */
+    footer { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-secondary); font-size: 14px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-meta { color: var(--text-secondary); font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">K</div>
+        <span>Kingly</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+        <a href="support.html">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span> 100% On-Device · No Signup</span>
+        <h1>Private wealth.<br />Plainly seen.<br /><span class="gold">Entirely yours.</span></h1>
+        <p class="lead">Kingly is a private investment and finance journal for self-directed investors who want clarity over noise. Track every account, position, budget and transaction — beautifully, calmly, and entirely on your iPhone.</p>
+        <div class="cta-row">
+          <a href="#features" class="btn btn-primary">Explore features →</a>
+          <a href="support.html" class="btn btn-secondary">Contact support</a>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="screen">
+            <div class="screen-header">
+              <span class="title">Overview</span>
+              <div class="icon">♛</div>
+            </div>
+            <div class="nw-card">
+              <div class="nw-label">NET WORTH</div>
+              <div class="nw-value">$32,020</div>
+              <div class="nw-delta">▼ −$232 (−0.72%) this month</div>
+              <div class="chart">
+                <svg viewBox="0 0 240 70" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#F4C342" stroke-width="2" points="0,18 30,28 60,32 90,42 120,40 150,48 180,36 210,30 240,20" />
+                  <polyline fill="url(#g1)" stroke="none" stroke-width="0" points="0,18 30,28 60,32 90,42 120,40 150,48 180,36 210,30 240,20 240,70 0,70" />
+                  <defs>
+                    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#F4C342" stop-opacity="0.35" />
+                      <stop offset="100%" stop-color="#F4C342" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="seg-row" style="margin-top:8px">
+                <div class="seg">7D</div>
+                <div class="seg active">1M</div>
+                <div class="seg">3M</div>
+                <div class="seg">1Y</div>
+                <div class="seg">All</div>
+              </div>
+            </div>
+            <div class="ring-row nw-card">
+              <div class="donut">
+                <svg viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4" />
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="#F4C342" stroke-width="4" stroke-dasharray="36 88" stroke-linecap="round" />
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="#4ADE80" stroke-width="4" stroke-dasharray="20 88" stroke-dashoffset="-36" stroke-linecap="round" />
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="#FB923C" stroke-width="4" stroke-dasharray="16 88" stroke-dashoffset="-56" stroke-linecap="round" />
+                </svg>
+                <div class="donut-center">$82k</div>
+              </div>
+              <div class="ring-text" style="flex:1">
+                <div class="leg-row"><span class="leg-dot" style="background:#F4C342"></span> Cash · 41%</div>
+                <div class="leg-row"><span class="leg-dot" style="background:#4ADE80"></span> Crypto · 23%</div>
+                <div class="leg-row"><span class="leg-dot" style="background:#FB923C"></span> Equities · 22%</div>
+                <div class="leg-row"><span class="leg-dot" style="background:#60A5FA"></span> Other · 14%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <div class="eyebrow">Features</div>
+        <h2>Everything you need.<br />Nothing you don't.</h2>
+        <p>Hand-crafted UIKit and Core Graphics surfaces — no third-party charting libraries. Every curve, ring, and slice responds instantly to your touch.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">♛</div>
+          <h3>Net Worth Tracking</h3>
+          <p>A calm, interactive line chart of your total wealth with 7D / 1M / 3M / 1Y / All ranges. Snapshots taken automatically every time you log a transaction.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">◐</div>
+          <h3>Asset Allocation</h3>
+          <p>Full-screen donut breaks down equities, bonds, crypto, real estate and cash at a glance. Tap any slice to drill into positions, weights and totals.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📈</div>
+          <h3>Portfolio Journal</h3>
+          <p>Stocks, ETFs, bonds, crypto, real estate and alternatives. Cost basis, market value, day change and unrealized gain/loss — calculated in real time.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📒</div>
+          <h3>Multi-Account Ledger</h3>
+          <p>Every income, expense and transfer — searchable, filterable, grouped by day. Pick a category from a visual grid, type the amount, done.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🧾</div>
+          <h3>Receipt Capture</h3>
+          <p>Snap a receipt with the camera or attach one from Photos. Images are stored privately in the app sandbox — no cloud upload, ever.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⤓</div>
+          <h3>JSON Export</h3>
+          <p>Save a portable snapshot of your entire financial life to Files. Import it back any time, or use it to back up between devices you trust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section id="privacy" class="privacy-band">
+    <div class="container privacy-grid">
+      <div>
+        <div class="eyebrow">Privacy first</div>
+        <h2>Built private.<br />By design.</h2>
+        <p style="color:var(--text-secondary);font-size:16px;">Kingly runs entirely on your device. There is no account, no cloud sync, no analytics, and no telemetry. Your financial life is yours alone.</p>
+        <ul class="privacy-list">
+          <li><span class="check">✓</span><div><strong style="color:var(--text-primary)">No signup, no login.</strong> Open the app and you're in.</div></li>
+          <li><span class="check">✓</span><div><strong style="color:var(--text-primary)">No network calls.</strong> Nothing leaves your iPhone.</div></li>
+          <li><span class="check">✓</span><div><strong style="color:var(--text-primary)">Sandbox storage.</strong> Data stays in the encrypted iOS app sandbox.</div></li>
+          <li><span class="check">✓</span><div><strong style="color:var(--text-primary)">Two-step delete.</strong> Wipe everything with a confirmed reset.</div></li>
+          <li><span class="check">✓</span><div><strong style="color:var(--text-primary)">No brokerage connections.</strong> A journal, not a trading desk.</div></li>
+        </ul>
+      </div>
+      <div class="shield-card">
+        <div class="shield-icon">🛡</div>
+        <h3>Zero data ever leaves your phone</h3>
+        <p>Camera and Photos access is used only to capture and attach receipts you choose. Nothing is uploaded — anywhere. Export is opt-in, manual, and only goes where you point it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <div class="eyebrow">FAQ</div>
+        <h2>Questions, answered.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Does Kingly connect to my bank or brokerage?</summary>
+          <p>No. Kingly is a journal, not a trading or aggregation tool. You log holdings, transactions, and balances manually. This keeps the app squarely outside regulated financial activity and your credentials never leave your device.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored?</summary>
+          <p>All data is stored locally in the encrypted iOS app sandbox. There is no cloud backup of financial data, no remote server, and no account. If you delete the app, your data is deleted.</p>
+        </details>
+        <details>
+          <summary>Can I export my data?</summary>
+          <p>Yes. The Settings tab includes a full JSON export of every account, transaction, holding, budget, and theme preference. You can also share that file to any app that accepts it — iCloud Drive, Files, AirDrop, or email to yourself.</p>
+        </details>
+        <details>
+          <summary>Is the app free?</summary>
+          <p>Kingly is a one-time purchase with no subscriptions. All current features are included; future major updates may be released as separate paid upgrades.</p>
+        </details>
+        <details>
+          <summary>Does the app require an internet connection?</summary>
+          <p>No. Kingly works fully offline. An internet connection is never required to use any feature.</p>
+        </details>
+        <details>
+          <summary>How do I get support?</summary>
+          <p>Email <a href="mailto:dhfu94086@gmail.com" style="color:var(--brand-gold)">dhfu94086@gmail.com</a> — see the <a href="support.html" style="color:var(--brand-gold)">Support</a> page for response times and what to include.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-meta">© 2026 Kingly. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="support.html">Support</a>
+        <a href="mailto:dhfu94086@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

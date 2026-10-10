@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kingly Support — get help, report an issue, or contact the developer." />
+  <meta name="theme-color" content="#0A0E1A" />
+  <title>Support — Kingly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0A0E1A;
+      --bg-secondary: #121829;
+      --bg-tertiary: #1A2238;
+      --text-primary: #F5F7FA;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --brand-gold: #F4C342;
+      --brand-gain: #4ADE80;
+      --brand-navy: #60A5FA;
+      --brand-coral: #FB923C;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      display: grid; place-items: center;
+      color: #0A0E1A; font-weight: 800; font-size: 16px;
+      box-shadow: 0 4px 12px rgba(244,195,66,0.25);
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--brand-gold); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    /* Header */
+    .page-header { padding: 72px 0 32px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .eyebrow { color: var(--brand-gold); font-weight: 600; letter-spacing: 1.4px; font-size: 12px; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 4.5vw, 44px); font-weight: 800; letter-spacing: -1px; margin: 12px 0 16px; }
+    .lead { color: var(--text-secondary); font-size: 17px; max-width: 640px; }
+
+    /* Content */
+    main { padding: 56px 0 80px; }
+
+    /* Contact card */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(244,195,66,0.08), rgba(244,195,66,0.02));
+      border: 1px solid rgba(244,195,66,0.25);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 720px) { .contact-card { grid-template-columns: 1fr; text-align: center; } }
+    .contact-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      display: grid; place-items: center; font-size: 36px;
+      color: #0A0E1A;
+      box-shadow: 0 12px 28px rgba(244,195,66,0.25);
+    }
+    .contact-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .contact-card p { color: var(--text-secondary); font-size: 15px; margin-bottom: 12px; }
+    .email-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; border-radius: 10px;
+      background: rgba(244,195,66,0.12);
+      border: 1px solid rgba(244,195,66,0.3);
+      color: var(--brand-gold); font-weight: 600; font-size: 15px;
+      transition: background 0.2s;
+    }
+    .email-link:hover { background: rgba(244,195,66,0.2); }
+
+    h2 { font-size: 22px; font-weight: 700; margin: 40px 0 16px; letter-spacing: -0.3px; }
+    h2:first-of-type { margin-top: 0; }
+    h3 { font-size: 17px; font-weight: 700; margin: 24px 0 10px; color: var(--text-primary); }
+    p { color: var(--text-secondary); margin-bottom: 14px; font-size: 15px; }
+    ul, ol { color: var(--text-secondary); margin: 0 0 16px 22px; font-size: 15px; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-primary); font-weight: 600; }
+    a { color: var(--brand-gold); }
+    a:hover { text-decoration: underline; }
+
+    /* Quick Help grid */
+    .help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 720px) { .help-grid { grid-template-columns: 1fr; } }
+    .help-card {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .help-card:hover { border-color: rgba(244,195,66,0.3); transform: translateY(-2px); }
+    .help-card .h-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center; font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .help-card.gain .h-icon { background: rgba(74,222,128,0.15); color: var(--brand-gain); }
+    .help-card.gold .h-icon { background: rgba(244,195,66,0.15); color: var(--brand-gold); }
+    .help-card.navy .h-icon { background: rgba(96,165,250,0.15); color: var(--brand-navy); }
+    .help-card.coral .h-icon { background: rgba(251,146,60,0.15); color: var(--brand-coral); }
+    .help-card h3 { margin: 0 0 6px; font-size: 16px; }
+    .help-card p { color: var(--text-secondary); font-size: 14px; margin: 0; }
+
+    /* FAQ */
+    details {
+      background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md); padding: 18px 22px; margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+    details[open] { border-color: rgba(244,195,66,0.3); }
+    summary { cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--brand-gold); font-size: 22px; font-weight: 300; }
+    details[open] summary::after { content: "−"; }
+    details p, details ul { color: var(--text-secondary); margin-top: 10px; font-size: 14px; }
+
+    /* Checklist */
+    .checklist {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+    .checklist ul { margin: 0; padding-left: 0; list-style: none; }
+    .checklist li { padding-left: 24px; position: relative; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); }
+    .checklist li::before {
+      content: "•"; position: absolute; left: 6px; color: var(--brand-gold); font-weight: 700;
+    }
+    .checklist strong { color: var(--text-primary); }
+
+    /* Stats row */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 720px) { .stats-row { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .stat-card .v { font-size: 28px; font-weight: 800; color: var(--brand-gold); letter-spacing: -0.5px; }
+    .stat-card .l { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.6px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+
+    footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-secondary); font-size: 14px; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-meta { color: var(--text-muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">K</div>
+        <span>Kingly</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="support.html" class="active">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <div class="eyebrow">Help Center</div>
+      <h1>Support</h1>
+      <p class="lead">Need a hand with Kingly? Find quick fixes in our FAQ, or send us a note — we read every email.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Contact card -->
+      <div class="contact-card">
+        <div class="contact-icon">✉</div>
+        <div>
+          <h2>Email the developer</h2>
+          <p>For bug reports, feature requests, account issues, or anything else. We typically respond within 1–3 business days.</p>
+          <a href="mailto:dhfu94086@gmail.com" class="email-link">dhfu94086@gmail.com →</a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="v">1–3d</div>
+          <div class="l">Reply Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="v">iOS 16+</div>
+          <div class="l">Required</div>
+        </div>
+        <div class="stat-card">
+          <div class="v">v1.0.0</div>
+          <div class="l">Current Build</div>
+        </div>
+      </div>
+
+      <!-- Quick Help -->
+      <h2>Quick Help</h2>
+      <div class="help-grid">
+        <div class="help-card gain">
+          <div class="h-icon">↻</div>
+          <h3>Change Your Base Currency</h3>
+          <p>Settings → Preferences → Currency. Switch any time; existing transactions keep the currency they were logged in.</p>
+        </div>
+        <div class="help-card gold">
+          <div class="h-icon">⤓</div>
+          <h3>Export Your Data</h3>
+          <p>Settings → Data → Export. Saves a JSON snapshot you can save to Files, AirDrop, or import back later.</p>
+        </div>
+        <div class="help-card navy">
+          <div class="h-icon">⊕</div>
+          <h3>Add a Holding</h3>
+          <p>Portfolio tab → + button. Choose asset type, enter symbol, quantity, cost basis, and current price.</p>
+        </div>
+        <div class="help-card coral">
+          <div class="h-icon">⌫</div>
+          <h3>Delete All Data</h3>
+          <p>Settings → Data → Delete All Data. Requires you to type DELETE to confirm. We recommend exporting first.</p>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <h2 style="margin-top:56px;">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How is my net worth calculated?</summary>
+        <p>Kingly sums the current balance of every active account (cash, checking, savings, investment) and subtracts any liabilities you've recorded. Snapshots are taken automatically each time you log a transaction, so the trend line updates without any extra steps.</p>
+      </details>
+
+      <details>
+        <summary>How do I update prices for my investments?</summary>
+        <p>Open any holding, tap the price field, and enter the latest value. Cost basis, quantity, and current price combine to show your unrealized gain/loss in real time. Kingly does not connect to a live data feed — you remain in control of the numbers you record.</p>
+      </details>
+
+      <details>
+        <summary>Can I use multiple currencies?</summary>
+        <p>Kingly supports one display currency at a time, set in Settings → Preferences → Currency. All amounts are entered and aggregated in that single currency.</p>
+      </details>
+
+      <details>
+        <summary>How are asset allocation percentages computed?</summary>
+        <p>The allocation donut divides the current value of every holding across your asset classes (equities, bonds, crypto, real estate, cash, alternatives). Tap any slice to drill into the individual positions that contribute to it.</p>
+      </details>
+
+      <details>
+        <summary>Does the App sync between my iPhone and iPad?</summary>
+        <p>No. Kingly is local to each device, by design. If you want the same data on multiple devices, use the JSON export/import workflow.</p>
+      </details>
+
+      <details>
+        <summary>I lost my data after reinstalling the App. Can you restore it?</summary>
+        <p>Because data lives only on your device, we cannot restore anything we never had. We strongly recommend exporting a JSON snapshot periodically and keeping it in your Files app or iCloud Drive as a personal backup.</p>
+      </details>
+
+      <details>
+        <summary>The App is crashing. What should I do?</summary>
+        <p>First, make sure you're on the latest version (App Store → Updates). If a crash persists, please email us with: device model, iOS version, what you were doing when it crashed, and a screenshot if possible.</p>
+      </details>
+
+      <details>
+        <summary>How do I request a feature?</summary>
+        <p>We'd love to hear it. Email <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a> with "Feature Request" in the subject line. Real-user requests drive our roadmap.</p>
+      </details>
+
+      <!-- What to include -->
+      <h2>What to include in your email</h2>
+      <p>To help us help you faster, please include the following when it applies:</p>
+      <div class="checklist">
+        <ul>
+          <li><strong>Device model</strong> (e.g., iPhone 15 Pro)</li>
+          <li><strong>iOS version</strong> (Settings → General → About → Software Version)</li>
+          <li><strong>App version</strong> (Settings → About Kingly → Version)</li>
+          <li><strong>What you were doing</strong> when the issue happened</li>
+          <li><strong>What you expected</strong> to happen vs. what actually happened</li>
+          <li><strong>Screenshots or screen recordings</strong> if possible</li>
+        </ul>
+      </div>
+
+      <!-- Disclaimer -->
+      <h2 style="margin-top:56px;">Important</h2>
+      <p>Kingly is a personal finance journal and informational tool. It does not provide financial, investment, tax, or legal advice. The allocation, net worth, and analytics views are educational and based solely on the data you enter. Always consult a qualified professional for decisions involving your money. See our <a href="terms.html">Terms of Use</a> for the full disclaimer.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-meta">© 2026 Kingly. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

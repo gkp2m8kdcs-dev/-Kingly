@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kingly Terms of Use — the terms and conditions governing use of the Kingly iOS application." />
+  <meta name="theme-color" content="#0A0E1A" />
+  <title>Terms of Use — Kingly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0A0E1A;
+      --bg-secondary: #121829;
+      --bg-tertiary: #1A2238;
+      --text-primary: #F5F7FA;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --brand-gold: #F4C342;
+      --brand-gain: #4ADE80;
+      --brand-loss: #F87171;
+      --radius-md: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #F4C342 0%, #C99A1E 100%);
+      display: grid; place-items: center;
+      color: #0A0E1A; font-weight: 800; font-size: 16px;
+      box-shadow: 0 4px 12px rgba(244,195,66,0.25);
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--brand-gold); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    /* Header */
+    .page-header { padding: 72px 0 32px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .eyebrow { color: var(--brand-gold); font-weight: 600; letter-spacing: 1.4px; font-size: 12px; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 4.5vw, 44px); font-weight: 800; letter-spacing: -1px; margin: 12px 0 16px; }
+    .meta { color: var(--text-secondary); font-size: 14px; }
+    .updated { display: inline-block; padding: 4px 12px; background: rgba(74,222,128,0.1); color: var(--brand-gain); border-radius: 999px; font-size: 12px; font-weight: 600; margin-left: 8px; }
+
+    /* Content */
+    main { padding: 48px 0 80px; }
+    h2 { font-size: 22px; font-weight: 700; margin: 40px 0 14px; letter-spacing: -0.3px; }
+    h2:first-of-type { margin-top: 0; }
+    h3 { font-size: 17px; font-weight: 700; margin: 24px 0 10px; color: var(--text-primary); }
+    p { color: var(--text-secondary); margin-bottom: 14px; font-size: 15px; }
+    ul, ol { color: var(--text-secondary); margin: 0 0 16px 22px; font-size: 15px; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-primary); font-weight: 600; }
+    a { color: var(--brand-gold); }
+    a:hover { text-decoration: underline; }
+
+    .callout {
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--brand-gold);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin: 24px 0;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+
+    .warning {
+      background: linear-gradient(135deg, rgba(248,113,113,0.08), rgba(248,113,113,0.02));
+      border: 1px solid rgba(248,113,113,0.25);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .warning strong { color: var(--brand-loss); }
+    .warning p:last-child { margin-bottom: 0; }
+
+    .toc {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 24px 0 40px;
+    }
+    .toc h3 { margin-top: 0; margin-bottom: 12px; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; }
+    .toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; break-inside: avoid; }
+    .toc a { color: var(--text-secondary); }
+    .toc a:hover { color: var(--brand-gold); text-decoration: none; }
+    @media (max-width: 600px) { .toc ol { columns: 1; } }
+
+    footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-secondary); font-size: 14px; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-meta { color: var(--text-muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">K</div>
+        <span>Kingly</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html" class="active">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <div class="eyebrow">Legal</div>
+      <h1>Terms of Use</h1>
+      <div class="meta">Effective: October 10, 2026<span class="updated">Last updated: October 10, 2026</span></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <p>These Terms of Use ("Terms") govern your use of Kingly (the "App"), an iOS application published under the name "Kingly" and distributed via the Apple App Store. By installing, accessing, or using the App, you agree to be bound by these Terms. If you do not agree, do not install or use the App.</p>
+
+      <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+          <li><a href="#acceptance">Acceptance of Terms</a></li>
+          <li><a href="#license">License & Eligibility</a></li>
+          <li><a href="#service">Description of the Service</a></li>
+          <li><a href="#no-advice">No Financial Advice</a></li>
+          <li><a href="#user-data">Your Data & Responsibility</a></li>
+          <li><a href="#acceptable-use">Acceptable Use</a></li>
+          <li><a href="#ip">Intellectual Property</a></li>
+          <li><a href="#third-party">Third-Party Services</a></li>
+          <li><a href="#purchases">In-App Purchases</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#disclaimers">Disclaimers & Warranties</a></li>
+          <li><a href="#liability">Limitation of Liability</a></li>
+          <li><a href="#indemnification">Indemnification</a></li>
+          <li><a href="#changes">Changes to These Terms</a></li>
+          <li><a href="#governing">Governing Law</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </div>
+
+      <h2 id="acceptance">1. Acceptance of Terms</h2>
+      <p>By installing, copying, or otherwise using the App, you agree to these Terms, our <a href="privacy.html">Privacy Policy</a>, and any additional terms presented within the App. These Terms form a binding agreement between you and the developer of Kingly.</p>
+      <p>If you are accepting these Terms on behalf of an organization, you represent that you have authority to bind that organization, in which case "you" refers to that organization.</p>
+
+      <h2 id="license">2. License & Eligibility</h2>
+      <p>Subject to your compliance with these Terms and Apple's App Store terms, you are granted a personal, non-exclusive, non-transferable, revocable license to install and use the App on any iPhone you own or control that runs a supported version of iOS (currently iOS 16 or later).</p>
+      <p>You must be at least 16 years old (or the age of digital consent in your jurisdiction) to use the App. By using the App, you represent that you meet this requirement.</p>
+      <p>You may not resell, rent, lease, sublicense, or otherwise commercially exploit the App. You may not reverse engineer, decompile, or attempt to extract the source code of the App, except to the extent this restriction is prohibited by applicable law.</p>
+
+      <h2 id="service">3. Description of the Service</h2>
+      <p>Kingly is a private wealth journal that helps you record and review financial information locally on your device. Features include tracking accounts, transactions, holdings, budgets, asset allocation and net worth. You can attach receipt images to individual transactions, and export your data as a portable JSON file at any time.</p>
+      <p>The App <strong>does not</strong> connect to any bank, brokerage, exchange, or financial institution. It does not aggregate, retrieve, transmit, or place orders on your behalf. All data, including market prices, must be entered manually by you.</p>
+
+      <h2 id="no-advice">4. No Financial Advice</h2>
+
+      <div class="warning">
+        <p><strong>Important:</strong> Kingly is an informational and organizational tool only. It does not provide financial, investment, tax, legal, or accounting advice. The asset allocation, net worth, and analytics views are educational outputs based solely on the data you enter.</p>
+        <p>Nothing in the App constitutes a recommendation to buy, sell, or hold any security, asset, or investment. Always consult a qualified, licensed professional before making financial decisions. The developer is not a registered investment advisor, broker-dealer, or financial planner.</p>
+      </div>
+
+      <p>Any examples, default content, or illustrative numbers are not predictions or guarantees. Past performance of any asset does not indicate future results. You are solely responsible for verifying the accuracy of any data you enter or rely upon.</p>
+
+      <h2 id="user-data">5. Your Data & Responsibility</h2>
+      <p>You retain all rights to the data you enter into the App. Because the App stores data locally on your device, the developer has no access to it. You are solely responsible for:</p>
+      <ul>
+        <li>The accuracy of the financial data you enter.</li>
+        <li>Making and maintaining your own backups (e.g., via the in-app JSON export).</li>
+        <li>Securing access to your device (passcode, Face ID, etc.).</li>
+        <li>Understanding that deleting the App, or using "Delete All Data" inside the App, will permanently erase stored data.</li>
+      </ul>
+      <p>We strongly recommend exporting your data periodically as a personal backup.</p>
+
+      <h2 id="acceptable-use">6. Acceptable Use</h2>
+      <p>You agree not to use the App:</p>
+      <ul>
+        <li>For any unlawful purpose or in violation of any applicable laws or regulations.</li>
+        <li>To record data on behalf of others in a professional capacity (e.g., as an unlicensed financial advisor or accountant) where licensing is required.</li>
+        <li>To attempt to gain unauthorized access to the App, related systems, or networks.</li>
+        <li>To interfere with or disrupt the integrity or performance of the App.</li>
+        <li>In any manner that could damage, disable, overburden, or impair the App or interfere with any other party's use of it.</li>
+      </ul>
+
+      <h2 id="ip">7. Intellectual Property</h2>
+      <p>The App, including its source code, design, graphics, icons, logos, and documentation, is owned by the developer and is protected by copyright, trade secret, and other intellectual property laws. These Terms grant you a limited license to use the App; they do not transfer ownership of any intellectual property to you.</p>
+      <p>You may not copy, modify, distribute, sell, or create derivative works of the App, in whole or in part, except as expressly permitted by these Terms or applicable law.</p>
+
+      <h2 id="third-party">8. Third-Party Services</h2>
+      <p>The App uses Apple's iOS, UIKit, Core Graphics, and standard system frameworks to provide on-device functionality. Apple is not responsible for the App or its content. Apple's standard App Store terms apply to your download, installation, and use of the App, including any in-app purchases.</p>
+
+      <h2 id="purchases">9. In-App Purchases</h2>
+      <p>If the App offers paid features or one-time unlocks, those purchases are processed by Apple via the App Store and are governed by Apple's payment terms. Sales are final except as required by applicable law or Apple's refund policy. Pricing and availability of paid features may change at any time.</p>
+      <p>If a paid feature is offered as a one-time purchase, you receive a personal, non-transferable license to use that feature in the App on your devices.</p>
+
+      <h2 id="termination">10. Termination</h2>
+      <p>These Terms remain in effect until terminated. You may terminate them at any time by deleting the App from your device. We may terminate or restrict your access to the App at any time, with or without notice, if we reasonably believe you have violated these Terms.</p>
+      <p>Upon termination, the license granted to you ends and you must stop using the App. Sections that by their nature should survive termination — including "No Financial Advice," "Intellectual Property," "Disclaimers & Warranties," "Limitation of Liability," and "Governing Law" — will survive.</p>
+
+      <h2 id="disclaimers">11. Disclaimers & Warranties</h2>
+
+      <div class="callout">
+        <p><strong>"AS IS" and "AS AVAILABLE."</strong> The App is provided on an "as is" and "as available" basis without warranties of any kind, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, non-infringement, and accuracy of data.</p>
+        <p>We do not warrant that the App will be uninterrupted, error-free, secure, or free of harmful components, or that defects will be corrected. We do not warrant the results that may be obtained from use of the App, including the accuracy of any allocation, calculation, or visualization.</p>
+      </div>
+
+      <p>Some jurisdictions do not allow the exclusion of certain warranties; in those jurisdictions, the exclusions above apply to the maximum extent permitted by law.</p>
+
+      <h2 id="liability">12. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, in no event shall the developer, its affiliates, officers, directors, employees, agents, or licensors be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, goodwill, or other intangible losses, arising out of or in connection with your use of (or inability to use) the App, even if advised of the possibility of such damages.</p>
+      <p>In no event shall the developer's total cumulative liability for any and all claims arising out of or relating to the App exceed the amount you paid for the App (or zero if the App is free).</p>
+      <p>Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law.</p>
+
+      <h2 id="indemnification">13. Indemnification</h2>
+      <p>You agree to defend, indemnify, and hold harmless the developer and its affiliates from and against any claims, damages, liabilities, losses, costs, or expenses (including reasonable attorneys' fees) arising out of or related to your use of the App, your violation of these Terms, or your violation of any third party's rights.</p>
+
+      <h2 id="changes">14. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. When we do, we will revise the "Last updated" date at the top of this page. Material changes will be highlighted in the App's release notes when practical. Because the App does not collect contact information, we cannot notify you directly; please review these Terms periodically. Continued use of the App after changes constitutes acceptance of the revised Terms.</p>
+
+      <h2 id="governing">15. Governing Law</h2>
+      <p>These Terms are governed by the laws of the jurisdiction in which the developer resides, without regard to its conflict-of-laws principles. Any dispute arising out of or relating to these Terms or the App shall be resolved exclusively in the competent courts of that jurisdiction, except where consumer laws of your place of residence grant you the right to bring an action before the courts of that place.</p>
+      <p>If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+
+      <h2 id="contact">16. Contact</h2>
+      <p>If you have questions about these Terms, please contact:</p>
+      <p><strong>Kingly Support</strong><br />
+      Email: <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a></p>
+      <p>For privacy matters, see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-meta">© 2026 Kingly. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
